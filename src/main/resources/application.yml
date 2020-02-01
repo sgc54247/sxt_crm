@@ -1,0 +1,33 @@
+#项目的端口号  上下文路径
+server:
+  port: 8989
+  servlet:
+    context-path: /crm
+
+
+#数据源配置
+spring:
+  datasource:
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/crm01?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+  ##freemarker
+  freemarker:
+    suffix: .ftl   #后缀
+    content-type: text/html  #内容类型
+    charset: utf-8  #编码
+    template-loader-path: classpath:/views/   #加载文件的路径
+
+##mybatis配置
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml    #指定加载映射文件的路径
+  type-aliases-package: com.shsxt.crm.vo;com.shsxt.crm.query;com.shsxt.crm.dto   #指定别名包
+  configuration:
+    map-underscore-to-camel-case: true  #在使用mybatis的时候，出现JavaBean的字段与数据库表属性对应不上，配置后可以自动将下划线转驼峰
+
+## pageHelper
+pagehelper:
+  helper-dialect: mysql
